@@ -1,5 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import { Droppable } from 'react-beautiful-dnd';
 
 import Card from './Card'
 import AddActionButton from './AddActionButton'
@@ -10,13 +11,18 @@ export default ({
     cards,
     listId
 }) =>
-<div style = {style.container}>
-    <Typography gutterBottom>
-                { title }
-    </Typography>
-    { cards.map(card => <Card key = {card.id} title = { card.title }/>)}
-    <AddActionButton listId={listId}/>
-</div>
+<Droppable droppableId = {String(listId)}>
+    {(provided) => (
+        <div {...provided.droppableProps} ref = {provided.innerRef} style = {style.container}>
+            <Typography gutterBottom>
+                        { title }
+            </Typography>
+            { cards.map((card, i) => <Card key = {card.id} title = { card.title } id = {card.id} index= {i}/>)}
+            <AddActionButton listId={listId}/>
+            {provided.placeholder}
+        </div>
+    )}
+</Droppable>
 
 const style = {
     container: {

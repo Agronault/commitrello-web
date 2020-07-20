@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import List from './List';
 import AppBar from './AppBar';
@@ -10,12 +11,18 @@ function App(props) {
   return (
     <div className="App">
       <AppBar/>
-      <div style = {styles.listsContainer}>
-        { lists.map(list => <List key = {list.id} listId = {list.id} title = {list.title} cards = {list.cards}/>)}
-        <AddActionButton list/>
-      </div>
+      <DragDropContext onDragEnd = {onDragEnd}>
+        <div style = {styles.listsContainer}>
+          { lists.map(list => <List key = {list.id} listId = {list.id} title = {list.title} cards = {list.cards}/>)}
+          <AddActionButton list/>
+        </div>
+      </DragDropContext>
     </div>
   );
+}
+
+function onDragEnd() {
+  //TODO
 }
 
 const styles = {
