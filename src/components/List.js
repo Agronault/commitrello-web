@@ -17,7 +17,7 @@ export default ({
             <Typography gutterBottom>
                         { title }
             </Typography>
-            { cards.map((card, i) => <Card key = {card.id} title = { card.title } id = {card.id} index= {i}/>)}
+            { cards.map((card, i) => <Card key = {card.id} card={card} id = {card.id} index= {i}/>)}
             <AddActionButton listId={listId}/>
             {provided.placeholder}
         </div>

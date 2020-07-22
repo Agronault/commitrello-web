@@ -24,11 +24,13 @@ const initialState = [
         cards: [
             {
                 id: 2,
-                title: 'Card 0'
+                title: 'Tarefa teste de imagem',
+                srcUrl: 'https://i.imgur.com/tAdv2HR.png'
             },
             {
                 id: 3,
-                title: 'Card 1'
+                title: 'Tarefa teste descrição',
+                subTitle: 'Isso é uma descrição mais detalhada'
             }
         ]
     }

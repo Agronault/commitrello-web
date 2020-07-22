@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardHeader from '@material-ui/core/CardHeader';
 import { Draggable } from 'react-beautiful-dnd';
 
 export default (props) =>
@@ -9,11 +9,21 @@ export default (props) =>
         {(provided) => (
             <div {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                 <Card style = {styles.cardContainer}>
-                    <CardContent>
-                        <Typography gutterBottom>
-                            { props.title }
-                        </Typography>
-                    </CardContent>
+                    <CardHeader
+                        title={props.card.title}
+                        subheader={props.card.subTitle}
+                    />
+                    {
+                        (props.card.srcUrl) ? 
+                        <CardMedia
+                            wide
+                            component='img'
+                            image={props.card.srcUrl}
+                            title={`Imagem de capa da tarefa ${props.card.title}`}
+                            className={styles.media}
+                        />
+                        : <React.Fragment />
+                    }
                 </Card>
             </div>
         )}
@@ -21,6 +31,11 @@ export default (props) =>
 
 const styles = {
     cardContainer: {
-        marginBottom: 8
-    }
+        marginBottom: 8,
+        maxWidth: 345
+    },
+    media: {
+        height: 0,
+        paddingTop: '56.25%', // 16:9
+      },
 }
